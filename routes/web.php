@@ -40,6 +40,8 @@ Route::get('/', function () {
         Route::get('layout', function () {
         return Inertia::render('Layout');
     })->name('layout');
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
 });
