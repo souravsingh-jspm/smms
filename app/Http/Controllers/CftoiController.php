@@ -7,59 +7,49 @@ use Illuminate\Http\Request;
 
 class CftoiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+        public function index()
     {
-        //
+        return response()->json(cftoi::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'description' => 'sometimes|required|string',
+
+        ]);
+
+        $cftoi = cftoi::create($validated);
+
+        return response()->json(['message' => 'Created successfully', 'data' => $cftoi], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(cftoi $cftoi)
+    public function show(cftoi $cf_topicof_interest)
     {
-        //
+       return response()->json($cf_topicof_interest);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(cftoi $cftoi)
     {
-        //
+        return response()->json($cftoi);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, cftoi $cftoi)
+    public function update(Request $request, cftoi $cf_topicof_interest)
     {
-        //
+        $validated = $request->validate([
+            'description' => 'sometimes|required|string',
+
+        ]);
+
+        $cf_topicof_interest->update($validated);
+
+        return response()->json(['message' => 'Updated successfully', 'data' => $cf_topicof_interest]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(cftoi $cftoi)
+    public function destroy(cftoi $cf_topicof_interest)
     {
-        //
+        $cf_topicof_interest->delete();
+        return response()->json(['message' => 'Deleted successfully']);
     }
 }

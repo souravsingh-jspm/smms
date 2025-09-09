@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('cfpids', function (Blueprint $table) {
             $table->id();
+            $table->string('icon');
+            $table->longText('title');
+            $table->string('date');
             $table->timestamps();
         });
     }

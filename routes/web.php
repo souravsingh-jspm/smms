@@ -43,9 +43,13 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-     Route::get('/admin/conference', function () {
-        return Inertia::render('AdminConferencePage');
+     Route::get('/admin/home-page', function () {
+        return Inertia::render('AdminHomePage');
     })->name('admin-home');
+
+         Route::get('/admin/call-for-page', function () {
+        return Inertia::render('AdminCallForPage');
+    })->name('admin-call-for-page');
 });
 
 require __DIR__.'/settings.php';

@@ -7,59 +7,51 @@ use Illuminate\Http\Request;
 
 class CfsgController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+       public function index()
     {
-        //
+        return response()->json(cfsg::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'icon' => 'sometimes|required|string',
+            'title' => 'sometimes|required|string',
+            'description' => 'sometimes|required|string',
+        ]);
+
+        $cfsg = cfsg::create($validated);
+
+        return response()->json(['message' => 'Created successfully', 'data' => $cfsg], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(cfsg $cfsg)
+    public function show(cfsg $cf_submission_guideline)
     {
-        //
+       return response()->json($cf_submission_guideline);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(cfsg $cfsg)
     {
-        //
+        return response()->json($cfsg);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, cfsg $cfsg)
+    public function update(Request $request, cfsg $cf_submission_guideline)
     {
-        //
+        $validated = $request->validate([
+            'icon' => 'sometimes|required|string',
+            'title' => 'sometimes|required|string',
+            'description' => 'sometimes|required|string',
+        ]);
+
+        $cf_submission_guideline->update($validated);
+
+        return response()->json(['message' => 'Updated successfully', 'data' => $cf_submission_guideline]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(cfsg $cfsg)
+    public function destroy(cfsg $cf_submission_guideline)
     {
-        //
+        $cf_submission_guideline->delete();
+        return response()->json(['message' => 'Deleted successfully']);
     }
 }

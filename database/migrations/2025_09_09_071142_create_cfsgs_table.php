@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('cfsgs', function (Blueprint $table) {
             $table->id();
+            $table->string('icon');
+            $table->string('title');
+            $table->longText('description');
             $table->timestamps();
         });
     }
