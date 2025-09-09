@@ -49,7 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
          Route::get('/admin/call-for-page', function () {
         return Inertia::render('AdminCallForPage');
-    })->name('admin-call-for-page');
+    })->name('admin/call-for-page');
 });
 
 require __DIR__.'/settings.php';

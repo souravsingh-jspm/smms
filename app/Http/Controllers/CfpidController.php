@@ -18,6 +18,7 @@ class CfpidController extends Controller
             'icon' => 'sometimes|required|string',
             'title' => 'sometimes|required|string',
             'date' => 'sometimes|required|string',
+            'status' => 'sometimes|required|boolean',
         ]);
 
         $cfpid = cfpid::create($validated);
@@ -42,6 +43,7 @@ class CfpidController extends Controller
            'icon' => 'sometimes|required|string',
             'title' => 'sometimes|required|string',
             'date' => 'sometimes|required|string',
+            'status' => 'sometimes|required|boolean',
         ]);
 
         $cf_important_date->update($validated);

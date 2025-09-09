@@ -13,4 +13,5 @@ class cfpid extends Model
         'icon',
         'title',
         'date',
+        'status'
     ];}
