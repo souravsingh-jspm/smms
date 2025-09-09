@@ -15,9 +15,9 @@ class HpidController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'icon' => 'required|string',
+            'title' => 'sometimes|required|string',
+            'description' => 'sometimes|required|string',
+            'icon' => 'sometimes|required|string',
         ]);
 
         $hpid = hpid::create($validated);

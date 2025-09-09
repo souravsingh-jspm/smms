@@ -10,7 +10,7 @@ export default function AdminConferencePage() {
     // Form states + Edit Mode
     const [highlightForm, setHighlightForm] = useState({ id: null, icon: '', date: '', description: '' });
     const [importantForm, setImportantForm] = useState({ id: null, title: '', description: '', icon: '' });
-    const [aboutForm, setAboutForm] = useState({ id: null, conference_detail: '', conference_venue: '' });
+    const [aboutForm, setAboutForm] = useState({ id: null, conference_detail: '', conference_venue: '', conference_heading: '' });
 
     useEffect(() => {
         fetchAllData();
@@ -51,7 +51,7 @@ export default function AdminConferencePage() {
             } else {
                 await axios.post('/api/about-conference', aboutForm);
             }
-            setAboutForm({ id: null, conference_detail: '', conference_venue: '' });
+            setAboutForm({ id: null, conference_detail: '', conference_venue: '', conference_heading: '' });
         }
 
         fetchAllData();
@@ -65,7 +65,12 @@ export default function AdminConferencePage() {
             setImportantForm({ id: item.id, title: item.title, description: item.description, icon: item.icon });
         }
         if (type === 'about') {
-            setAboutForm({ id: item.id, conference_detail: item.conference_detail, conference_venue: item.conference_venue });
+            setAboutForm({
+                id: item.id,
+                conference_detail: item.conference_detail,
+                conference_venue: item.conference_venue,
+                conference_heading: item.conference_heading,
+            });
         }
     };
 
@@ -186,13 +191,21 @@ export default function AdminConferencePage() {
                         onChange={(e) => setAboutForm({ ...aboutForm, conference_venue: e.target.value })}
                         className="w-full border p-2"
                     />
+
+                    <input
+                        type="text"
+                        placeholder="Conference Heading"
+                        value={aboutForm.conference_heading}
+                        onChange={(e) => setAboutForm({ ...aboutForm, conference_heading: e.target.value })}
+                        className="w-full border p-2"
+                    />
                     <button className="rounded bg-blue-500 px-4 py-2 text-white">{aboutForm.id ? 'Update' : 'Submit'}</button>
                 </form>
                 <ul className="mt-4 space-y-2">
                     {aboutConference.map((item: any) => (
                         <li key={item.id} className="flex items-center justify-between border p-2">
                             <span>
-                                {item.conference_detail} - {item.conference_venue}
+                                {item.conference_detail} - {item.conference_venue} - {item.conference_heading}
                             </span>
                             <div className="space-x-3">
                                 <button className="text-green-500" onClick={() => handleEdit('about', item)}>

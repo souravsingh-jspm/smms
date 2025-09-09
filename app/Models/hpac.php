@@ -11,6 +11,7 @@ class hpac extends Model
     // Define the fillable fields
     protected $fillable = [
         'conference_detail',
+        'conference_heading',
         'conference_venue',
     ];
 

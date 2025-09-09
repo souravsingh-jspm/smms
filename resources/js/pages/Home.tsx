@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import axios from 'axios'; // Add Axios
 import { Award, ChevronLeft, ChevronRight, Clock, FileText, GraduationCap, MapPin, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -34,20 +35,55 @@ const quickStats = [
     { icon: GraduationCap, label: 'Universities', value: '100+' },
 ];
 
-const importantDates = [
-    { event: 'Paper Submission Deadline', date: 'March 15, 2024' },
-    { event: 'Notification of Acceptance', date: 'April 10, 2024' },
-    { event: 'Camera Ready Submission', date: 'April 25, 2024' },
-    { event: 'Conference Dates', date: 'May 15-17, 2024' },
-];
+// const importantDates = [
+//     { event: 'Paper Submission Deadline', date: 'March 15, 2024' },
+//     { event: 'Notification of Acceptance', date: 'April 10, 2024' },
+//     { event: 'Camera Ready Submission', date: 'April 25, 2024' },
+//     { event: 'Conference Dates', date: 'May 15-17, 2024' },
+// ];
 
 export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
-
+    // States to store API data (optional for now, just logging)
+    const [conferenceHighlights, setConferenceHighlights] = useState([]);
+    const [importantDates, setImportantDates] = useState([]);
+    const [aboutConference, setAboutConference] = useState([]);
     // Auto-advance carousel
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        // Fetch all data when component mounts
+        const fetchData = async () => {
+            try {
+                const [highlightsRes, datesRes, aboutRes] = await Promise.all([
+                    axios.get('/api/conferencehigh-lights'),
+                    axios.get('/api/important-dates'),
+                    axios.get('/api/about-conference'),
+                ]);
+
+                setConferenceHighlights(highlightsRes.data);
+                setImportantDates(datesRes.data);
+                setAboutConference(aboutRes.data);
+
+                // Log data for now
+                console.log('Conference Highlights:', highlightsRes.data);
+                console.log('Important Dates:', datesRes.data);
+                console.log('About Conference:', aboutRes.data);
+            } catch (error) {
+                console.error('Error fetching home page data:', error);
+            }
+        };
+
+        fetchData();
+
+        // Auto-advance carousel
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % 3);
         }, 5000);
         return () => clearInterval(timer);
     }, []);
@@ -151,10 +187,9 @@ export default function Home() {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-12 text-center">
                         <h2 className="mb-4 text-3xl font-bold text-conference-blue md:text-4xl">About the Conference</h2>
-                        <p className="mx-auto max-w-3xl text-xl text-gray-600">
-                            The International Conference on Emerging Trends in Mechanical Manufacturing Sciences brings together researchers,
-                            academicians, and industry professionals to share cutting-edge research and innovations in mechanical manufacturing.
-                        </p>
+                        {aboutConference.map((item) => (
+                            <p className="mx-auto max-w-3xl text-xl text-gray-600">{item.conference_detail}</p>
+                        ))}
                     </div>
 
                     <div className="grid items-center gap-12 md:grid-cols-2">
@@ -201,10 +236,10 @@ export default function Home() {
                                     <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-conference-red">
                                         <Clock className="h-6 w-6 text-white" />
                                     </div>
-                                    <CardTitle className="text-lg font-semibold">{item.event}</CardTitle>
+                                    <CardTitle className="text-lg font-semibold">{item?.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="font-medium text-blue-100">{item.date}</p>
+                                    <p className="font-medium text-blue-100">{item.description}</p>{' '}
                                 </CardContent>
                             </Card>
                         ))}
@@ -250,11 +285,9 @@ export default function Home() {
                                         <p className="text-gray-600">Pune, Maharashtra, India</p>
                                     </div>
                                 </div>
-                                <p className="leading-relaxed text-gray-700">
-                                    Located in the heart of Pune, JSPM University provides state-of-the-art facilities for conferences and academic
-                                    events. The campus offers modern lecture halls, research laboratories, and comfortable accommodation for
-                                    participants.
-                                </p>
+                                {aboutConference.map((item) => (
+                                    <p className="mx-auto max-w-3xl text-xl text-gray-600">{item.conference_venue}</p>
+                                ))}
                                 <Button
                                     asChild
                                     variant="outline"

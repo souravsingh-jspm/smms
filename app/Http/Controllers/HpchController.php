@@ -16,9 +16,9 @@ class HpchController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'icon' => 'required|string|max:255',
+            'icon' => 'sometimes|required|string',
             'date' => 'required|date',
-            'description' => 'required|string',
+            'description' => 'sometimes|required|string',
         ]);
 
         $hpch = hpch::create($validated);
@@ -40,7 +40,7 @@ class HpchController extends Controller
     public function update(Request $request, hpch $conferencehigh_light)
     {
         $validated = $request->validate([
-            'icon' => 'sometimes|required|string|max:255',
+            'icon' => 'sometimes|required|string',
             'date' => 'sometimes|required|date',
             'description' => 'sometimes|required|string',
         ]);

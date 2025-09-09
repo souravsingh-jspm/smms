@@ -15,8 +15,9 @@ class HpacController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'conference_venue' => 'required|string|max:255',
-            'conference_detail' => 'required|string',
+            'conference_venue' => 'sometimes|required|string',
+            'conference_heading' => 'sometimes|required|string',
+            'conference_detail' => 'sometimes|required|string',
         ]);
 
         $hpac = hpac::create($validated);
@@ -38,7 +39,8 @@ class HpacController extends Controller
     public function update(Request $request, hpac $about_conference)
     {
         $validated = $request->validate([
-            'conference_venue' => 'sometimes|required|string|max:255',
+            'conference_venue' => 'sometimes|required|string',
+            'conference_heading' => 'sometimes|required|string',
             'conference_detail' => 'sometimes|required|string',
         ]);
 

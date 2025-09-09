@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hpacs', function (Blueprint $table) {
+        Schema::create('cfsgs', function (Blueprint $table) {
             $table->id();
-     $table->longText('conference_detail');
-    $table->longText('conference_heading');
-    $table->longText('conference_venue');      
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hpacs');
+        Schema::dropIfExists('cfsgs');
     }
 };
