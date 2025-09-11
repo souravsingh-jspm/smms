@@ -47,9 +47,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('AdminHomePage');
     })->name('admin-home');
 
-         Route::get('admin_call_for_page', function () {
+         Route::get('slider', function () {
+        return Inertia::render('Sourav');
+    })->name('slider');
+
+         Route::get('/admin/call-for-page', function () {
         return Inertia::render('AdminCallForPage');
-    })->name('admin/call-for-page');
+    })->name('acall-for-page');
 });
 
 require __DIR__.'/settings.php';

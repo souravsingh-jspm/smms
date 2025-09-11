@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import axios from 'axios'; // Add Axios
-import { Award, ChevronLeft, ChevronRight, Clock, FileText, GraduationCap, MapPin, Users } from 'lucide-react';
+import { Award, Clock, FileText, GraduationCap, MapPin, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 
 const carouselImages = [
     {
@@ -48,6 +49,7 @@ export default function Home() {
     const [conferenceHighlights, setConferenceHighlights] = useState([]);
     const [importantDates, setImportantDates] = useState([]);
     const [aboutConference, setAboutConference] = useState([]);
+    const [sliderImages, setSliderImages] = useState([]);
     // Auto-advance carousel
     useEffect(() => {
         const timer = setInterval(() => {
@@ -60,20 +62,23 @@ export default function Home() {
         // Fetch all data when component mounts
         const fetchData = async () => {
             try {
-                const [highlightsRes, datesRes, aboutRes] = await Promise.all([
+                const [highlightsRes, datesRes, aboutRes, sliderImg] = await Promise.all([
                     axios.get('/api/conferencehigh-lights'),
                     axios.get('/api/important-dates'),
                     axios.get('/api/about-conference'),
+                    axios.get('/api/slider'),
                 ]);
 
                 setConferenceHighlights(highlightsRes.data);
                 setImportantDates(datesRes.data);
                 setAboutConference(aboutRes.data);
+                setSliderImages(sliderImg.data.data);
 
                 // Log data for now
                 console.log('Conference Highlights:', highlightsRes.data);
                 console.log('Important Dates:', datesRes.data);
                 console.log('About Conference:', aboutRes.data);
+                console.log('Slider Images:', sliderImg.data.data);
             } catch (error) {
                 console.error('Error fetching home page data:', error);
             }
@@ -99,72 +104,18 @@ export default function Home() {
     return (
         <div>
             {/* Hero Carousel Section */}
-            <section className="relative h-[80vh] overflow-hidden">
-                <div className="relative h-full w-full">
-                    {carouselImages.map((image, index) => (
-                        <div
-                            key={image.id}
-                            className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-                        >
-                            <div
-                                className="h-full w-full bg-gray-300 bg-cover bg-center"
-                                style={{
-                                    backgroundImage: `linear-gradient(rgba(38, 60, 118, 0.7), rgba(139, 0, 0, 0.3)), url(${image.url})`,
-                                }}
-                            >
-                                <div className="flex h-full items-center justify-center">
-                                    <div className="max-w-4xl px-4 text-center text-white">
-                                        <h1 className="mb-6 text-4xl leading-tight font-bold md:text-6xl">{image.title}</h1>
-                                        <p className="mb-8 text-xl font-medium text-blue-100 md:text-2xl">{image.subtitle}</p>
-                                        <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                                            <Button
-                                                asChild
-                                                size="lg"
-                                                className="bg-conference-red px-8 py-3 text-lg font-semibold text-white hover:bg-conference-red/90"
-                                            >
-                                                <a href="/call-for-papers">Submit Your Paper</a>
-                                            </Button>
-                                            <Button
-                                                asChild
-                                                size="lg"
-                                                variant="outline"
-                                                className="border-white px-8 py-3 text-lg font-semibold text-black hover:bg-white hover:text-conference-blue"
-                                            >
-                                                <a href="/about-us">Learn More</a>
-                                            </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+            <Carousel data-bs-theme="dark">
+                {sliderImages.map((image) => (
+                    <Carousel.Item>
+                        <img className="d-block w-100" src={`storage/${image.image_path}`} alt="First slide" />
+                        {/* <Carousel.Caption>
+                            <h1>First slide label</h1>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </Carousel.Caption> */}
+                    </Carousel.Item>
+                ))}
+            </Carousel>
 
-                {/* Carousel Navigation */}
-                <button
-                    onClick={prevSlide}
-                    className="absolute top-1/2 left-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white transition-colors duration-200 hover:bg-white/30"
-                >
-                    <ChevronLeft size={24} />
-                </button>
-                <button
-                    onClick={nextSlide}
-                    className="absolute top-1/2 right-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white transition-colors duration-200 hover:bg-white/30"
-                >
-                    <ChevronRight size={24} />
-                </button>
-
-                {/* Carousel Indicators */}
-                <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 space-x-2">
-                    {carouselImages.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => setCurrentSlide(index)}
-                            className={`h-3 w-3 rounded-full transition-colors duration-200 ${index === currentSlide ? 'bg-white' : 'bg-white/50'}`}
-                        />
-                    ))}
-                </div>
-            </section>
             {/* Quick Stats Section */}
             <section className="bg-gray-50 py-16">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
