@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('AdminHomePage');
     })->name('admin-home');
 
-         Route::get('/admin/call-for-page', function () {
+         Route::get('admin_call_for_page', function () {
         return Inertia::render('AdminCallForPage');
     })->name('admin/call-for-page');
 });
