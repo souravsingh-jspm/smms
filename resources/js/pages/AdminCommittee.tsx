@@ -93,7 +93,7 @@ export default function TinyEditor() {
                             'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
                     }}
                 />
-                <button className="mt-2 cursor-pointer rounded bg-green-300 p-2" onClick={handleSave}>
+                <button className="m-2 rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600" onClick={handleSave}>
                     Save Changes
                 </button>
             </div>

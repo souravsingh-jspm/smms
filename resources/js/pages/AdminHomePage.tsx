@@ -162,10 +162,16 @@ export default function AdminConferencePage() {
                                 {item.title} - {item.icon} - {item.description}
                             </span>
                             <div className="space-x-3">
-                                <button className="text-green-500" onClick={() => handleEdit('important', item)}>
+                                <button
+                                    className="rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600"
+                                    onClick={() => handleEdit('important', item)}
+                                >
                                     Edit
                                 </button>
-                                <button className="text-red-500" onClick={() => handleDelete('important', item.id)}>
+                                <button
+                                    className="ml-1 rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700"
+                                    onClick={() => handleDelete('important', item.id)}
+                                >
                                     Delete
                                 </button>
                             </div>
@@ -208,10 +214,16 @@ export default function AdminConferencePage() {
                                 {item.conference_detail} - {item.conference_venue} - {item.conference_heading}
                             </span>
                             <div className="space-x-3">
-                                <button className="text-green-500" onClick={() => handleEdit('about', item)}>
+                                <button
+                                    className="rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600"
+                                    onClick={() => handleEdit('about', item)}
+                                >
                                     Edit
                                 </button>
-                                <button className="text-red-500" onClick={() => handleDelete('about', item.id)}>
+                                <button
+                                    className="rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700"
+                                    onClick={() => handleDelete('about', item.id)}
+                                >
                                     Delete
                                 </button>
                             </div>

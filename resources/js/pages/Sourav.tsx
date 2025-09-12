@@ -234,16 +234,10 @@ export default function SliderManager() {
                                 {slider.link_url && <small className="text-blue-600">Link: {slider.link_url}</small>}
                             </div>
                             <div className="flex gap-2">
-                                <button
-                                    onClick={() => handleEdit(slider)}
-                                    className="rounded-md bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600"
-                                >
+                                <button onClick={() => handleEdit(slider)} className="rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600">
                                     Edit
                                 </button>
-                                <button
-                                    onClick={() => handleDelete(slider.id)}
-                                    className="rounded-md bg-red-600 px-3 py-1 text-white hover:bg-red-700"
-                                >
+                                <button onClick={() => handleDelete(slider.id)} className="rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700">
                                     Delete
                                 </button>
                             </div>
