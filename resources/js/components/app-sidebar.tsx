@@ -15,6 +15,11 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
+        title: 'Home',
+        href: 'home',
+        icon: LayoutGrid,
+    },
+    {
         title: 'About Us',
         href: 'about-us',
         icon: LayoutGrid,
@@ -30,18 +35,18 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'About Us',
+        title: 'Paper Overview',
         href: 'paper-overview',
         icon: LayoutGrid,
     },
     {
-        title: 'About Us',
+        title: 'Pune Darshan',
         href: 'pune-darshan',
         icon: LayoutGrid,
     },
     {
-        title: 'About Us',
-        href: 'pune-darshan',
+        title: 'Committee',
+        href: 'committee',
         icon: LayoutGrid,
     },
     {

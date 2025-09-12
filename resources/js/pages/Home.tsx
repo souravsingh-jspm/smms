@@ -75,10 +75,10 @@ export default function Home() {
                 setSliderImages(sliderImg.data.data);
 
                 // Log data for now
-                console.log('Conference Highlights:', highlightsRes.data);
-                console.log('Important Dates:', datesRes.data);
-                console.log('About Conference:', aboutRes.data);
-                console.log('Slider Images:', sliderImg.data.data);
+                // console.log('Conference Highlights:', highlightsRes.data);
+                // console.log('Important Dates:', datesRes.data);
+                // console.log('About Conference:', aboutRes.data);
+                // console.log('Slider Images:', sliderImg.data.data);
             } catch (error) {
                 console.error('Error fetching home page data:', error);
             }

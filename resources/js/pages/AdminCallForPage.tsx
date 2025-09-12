@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import axios from 'axios';
 import { CheckCircle, Clock, FileText } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import RichTextEditor from './RichTextEditor';
 
 // const importantDates = [
 //     {
@@ -98,7 +97,6 @@ export default function CallForPapers() {
     return (
         <div>
             {/* Hero Section */}
-            <RichTextEditor value={content} onChange={setContent} />
 
             <section className="bg-gradient-to-r from-conference-blue to-conference-red py-20 text-white">
                 <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">

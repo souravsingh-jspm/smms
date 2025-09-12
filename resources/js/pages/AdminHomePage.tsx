@@ -76,7 +76,7 @@ export default function AdminConferencePage() {
 
     const handleDelete = async (type: string, id: number) => {
         let endpoint = '';
-        if (type === 'highlights') endpoint = `/api/conferencehigh-lights/${id}`;
+        // if (type === 'highlights') endpoint = `/api/conferencehigh-lights/${id}`;
         if (type === 'important') endpoint = `/api/important-dates/${id}`;
         if (type === 'about') endpoint = `/api/about-conference/${id}`;
         await axios.delete(endpoint);
@@ -86,7 +86,7 @@ export default function AdminConferencePage() {
     return (
         <div className="space-y-10 p-6">
             {/* Conference Highlights */}
-            <section className="rounded bg-white p-4 shadow">
+            {/* <section className="rounded bg-white p-4 shadow">
                 <h2 className="mb-4 text-xl font-bold">Conference Highlights</h2>
                 <form className="space-y-3" onSubmit={(e) => handleSubmit(e, 'highlights')}>
                     <input
@@ -127,7 +127,7 @@ export default function AdminConferencePage() {
                         </li>
                     ))}
                 </ul>
-            </section>
+            </section> */}
 
             {/* Important Dates */}
             <section className="rounded bg-white p-4 shadow">

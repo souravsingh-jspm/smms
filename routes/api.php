@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CommitteController;
 use App\Http\Controllers\HpchController;
 use App\Http\Controllers\HpacController;
 use App\Http\Controllers\HpidController;
@@ -22,3 +23,5 @@ Route::apiResource('cf-submission-guidelines', CfsgController::class);
 Route::apiResource('cf-topicof-interest', CftoiController::class);
 
 Route::apiResource('slider', SliderController::class);
+
+Route::apiResource('committe', CommitteController::class);
