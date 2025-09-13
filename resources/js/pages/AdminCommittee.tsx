@@ -1,3 +1,6 @@
+import AppLayout from '@/layouts/app-layout';
+import { type BreadcrumbItem } from '@/types';
+import { Head } from '@inertiajs/react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -6,6 +9,12 @@ import { useEffect, useRef, useState } from 'react';
 const COMMITTEE_ID_TO_EDIT = 2;
 
 export default function TinyEditor() {
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'Committee',
+            href: '/admin/committee',
+        },
+    ];
     const editorRef = useRef(null);
     const [title, setTitle] = useState('');
     const [initialContent, setInitialContent] = useState('<p>Loading content...</p>');
@@ -64,7 +73,8 @@ export default function TinyEditor() {
     }
 
     return (
-        <>
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <Head title="Dashboard" />
             <div className="container mt-5 rounded-lg border p-4 shadow-lg">
                 <div style={{ marginBottom: '1rem' }}>
                     <label htmlFor="committe-title" style={{ display: 'block', marginBottom: '0.5rem' }}>
@@ -97,6 +107,6 @@ export default function TinyEditor() {
                     Save Changes
                 </button>
             </div>
-        </>
+        </AppLayout>
     );
 }

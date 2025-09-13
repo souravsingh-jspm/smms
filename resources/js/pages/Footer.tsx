@@ -38,7 +38,7 @@ export default function AboutUs() {
                             <ul className="space-y-2">
                                 {navigation.map((item) => (
                                     <li key={item.name}>
-                                        <Link to={item.href} className="text-sm text-blue-100 transition-colors duration-200 hover:text-white">
+                                        <Link href={item.href} className="text-sm text-blue-100 transition-colors duration-200 hover:text-white">
                                             {item.name}
                                         </Link>
                                     </li>

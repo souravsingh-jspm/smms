@@ -1,7 +1,16 @@
+import AppLayout from '@/layouts/app-layout';
+import { type BreadcrumbItem } from '@/types';
+import { Head } from '@inertiajs/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 export default function AdminConferencePage() {
+    const breadcrumbs: BreadcrumbItem[] = [
+        {
+            title: 'Home Page',
+            href: '/admin/home-page',
+        },
+    ];
     // State for each section
     const [conferenceHighlights, setConferenceHighlights] = useState([]);
     const [importantDates, setImportantDates] = useState([]);
@@ -84,9 +93,11 @@ export default function AdminConferencePage() {
     };
 
     return (
-        <div className="space-y-10 p-6">
-            {/* Conference Highlights */}
-            {/* <section className="rounded bg-white p-4 shadow">
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <Head title="Dashboard" />
+            <div className="space-y-10 p-6">
+                {/* Conference Highlights */}
+                {/* <section className="rounded bg-white p-4 shadow">
                 <h2 className="mb-4 text-xl font-bold">Conference Highlights</h2>
                 <form className="space-y-3" onSubmit={(e) => handleSubmit(e, 'highlights')}>
                     <input
@@ -129,108 +140,109 @@ export default function AdminConferencePage() {
                 </ul>
             </section> */}
 
-            {/* Important Dates */}
-            <section className="rounded bg-white p-4 shadow">
-                <h2 className="mb-4 text-xl font-bold">Important Dates</h2>
-                <form className="space-y-3" onSubmit={(e) => handleSubmit(e, 'important')}>
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        value={importantForm.title}
-                        onChange={(e) => setImportantForm({ ...importantForm, title: e.target.value })}
-                        className="w-full border p-2"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Icon"
-                        value={importantForm.icon}
-                        onChange={(e) => setImportantForm({ ...importantForm, icon: e.target.value })}
-                        className="w-full border p-2"
-                    />
-                    <textarea
-                        placeholder="Description"
-                        value={importantForm.description}
-                        onChange={(e) => setImportantForm({ ...importantForm, description: e.target.value })}
-                        className="w-full border p-2"
-                    ></textarea>
-                    <button className="rounded bg-blue-500 px-4 py-2 text-white">{importantForm.id ? 'Update' : 'Submit'}</button>
-                </form>
-                <ul className="mt-4 space-y-2">
-                    {importantDates.map((item: any) => (
-                        <li key={item.id} className="flex items-center justify-between border p-2">
-                            <span>
-                                {item.title} - {item.icon} - {item.description}
-                            </span>
-                            <div className="space-x-3">
-                                <button
-                                    className="rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600"
-                                    onClick={() => handleEdit('important', item)}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    className="ml-1 rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700"
-                                    onClick={() => handleDelete('important', item.id)}
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </section>
+                {/* Important Dates */}
+                <section className="rounded bg-white p-4 shadow">
+                    <h2 className="mb-4 text-xl font-bold">Important Dates</h2>
+                    <form className="space-y-3" onSubmit={(e) => handleSubmit(e, 'important')}>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            value={importantForm.title}
+                            onChange={(e) => setImportantForm({ ...importantForm, title: e.target.value })}
+                            className="w-full border p-2"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Icon"
+                            value={importantForm.icon}
+                            onChange={(e) => setImportantForm({ ...importantForm, icon: e.target.value })}
+                            className="w-full border p-2"
+                        />
+                        <textarea
+                            placeholder="Description"
+                            value={importantForm.description}
+                            onChange={(e) => setImportantForm({ ...importantForm, description: e.target.value })}
+                            className="w-full border p-2"
+                        ></textarea>
+                        <button className="rounded bg-blue-500 px-4 py-2 text-white">{importantForm.id ? 'Update' : 'Submit'}</button>
+                    </form>
+                    <ul className="mt-4 space-y-2">
+                        {importantDates.map((item: any) => (
+                            <li key={item.id} className="flex items-center justify-between border p-2">
+                                <span>
+                                    {item.title} - {item.icon} - {item.description}
+                                </span>
+                                <div className="space-x-3">
+                                    <button
+                                        className="rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600"
+                                        onClick={() => handleEdit('important', item)}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        className="ml-1 rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700"
+                                        onClick={() => handleDelete('important', item.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
 
-            {/* About Conference */}
-            <section className="rounded bg-white p-4 shadow">
-                <h2 className="mb-4 text-xl font-bold">About Conference</h2>
-                <form className="space-y-3" onSubmit={(e) => handleSubmit(e, 'about')}>
-                    <textarea
-                        placeholder="Conference Detail"
-                        value={aboutForm.conference_detail}
-                        onChange={(e) => setAboutForm({ ...aboutForm, conference_detail: e.target.value })}
-                        className="w-full border p-2"
-                    ></textarea>
-                    <input
-                        type="text"
-                        placeholder="Conference Venue"
-                        value={aboutForm.conference_venue}
-                        onChange={(e) => setAboutForm({ ...aboutForm, conference_venue: e.target.value })}
-                        className="w-full border p-2"
-                    />
+                {/* About Conference */}
+                <section className="rounded bg-white p-4 shadow">
+                    <h2 className="mb-4 text-xl font-bold">About Conference</h2>
+                    <form className="space-y-3" onSubmit={(e) => handleSubmit(e, 'about')}>
+                        <textarea
+                            placeholder="Conference Detail"
+                            value={aboutForm.conference_detail}
+                            onChange={(e) => setAboutForm({ ...aboutForm, conference_detail: e.target.value })}
+                            className="w-full border p-2"
+                        ></textarea>
+                        <input
+                            type="text"
+                            placeholder="Conference Venue"
+                            value={aboutForm.conference_venue}
+                            onChange={(e) => setAboutForm({ ...aboutForm, conference_venue: e.target.value })}
+                            className="w-full border p-2"
+                        />
 
-                    <input
-                        type="text"
-                        placeholder="Conference Heading"
-                        value={aboutForm.conference_heading}
-                        onChange={(e) => setAboutForm({ ...aboutForm, conference_heading: e.target.value })}
-                        className="w-full border p-2"
-                    />
-                    <button className="rounded bg-blue-500 px-4 py-2 text-white">{aboutForm.id ? 'Update' : 'Submit'}</button>
-                </form>
-                <ul className="mt-4 space-y-2">
-                    {aboutConference.map((item: any) => (
-                        <li key={item.id} className="flex items-center justify-between border p-2">
-                            <span>
-                                {item.conference_detail} - {item.conference_venue} - {item.conference_heading}
-                            </span>
-                            <div className="space-x-3">
-                                <button
-                                    className="rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600"
-                                    onClick={() => handleEdit('about', item)}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    className="rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700"
-                                    onClick={() => handleDelete('about', item.id)}
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </section>
-        </div>
+                        <input
+                            type="text"
+                            placeholder="Conference Heading"
+                            value={aboutForm.conference_heading}
+                            onChange={(e) => setAboutForm({ ...aboutForm, conference_heading: e.target.value })}
+                            className="w-full border p-2"
+                        />
+                        <button className="rounded bg-blue-500 px-4 py-2 text-white">{aboutForm.id ? 'Update' : 'Submit'}</button>
+                    </form>
+                    <ul className="mt-4 space-y-2">
+                        {aboutConference.map((item: any) => (
+                            <li key={item.id} className="flex items-center justify-between border p-2">
+                                <span>
+                                    {item.conference_detail} - {item.conference_venue} - {item.conference_heading}
+                                </span>
+                                <div className="space-x-3">
+                                    <button
+                                        className="rounded bg-yellow-500 px-3 py-1 text-white hover:bg-yellow-600"
+                                        onClick={() => handleEdit('about', item)}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        className="rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700"
+                                        onClick={() => handleDelete('about', item.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            </div>
+        </AppLayout>
     );
 }

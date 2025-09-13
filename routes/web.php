@@ -48,7 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('admin-home');
 
          Route::get('admin/slider', function () {
-        return Inertia::render('Sourav');
+        return Inertia::render('AdminSlider');
     })->name('slider');
 
          Route::get('/admin/call-for-page', function () {
