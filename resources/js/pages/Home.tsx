@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Footer from '@/pages/Footer';
 import axios from 'axios'; // Add Axios
 import { Award, Clock, FileText, GraduationCap, MapPin, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -36,13 +37,6 @@ const quickStats = [
     { icon: GraduationCap, label: 'Universities', value: '100+' },
 ];
 
-// const importantDates = [
-//     { event: 'Paper Submission Deadline', date: 'March 15, 2024' },
-//     { event: 'Notification of Acceptance', date: 'April 10, 2024' },
-//     { event: 'Camera Ready Submission', date: 'April 25, 2024' },
-//     { event: 'Conference Dates', date: 'May 15-17, 2024' },
-// ];
-
 export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
     // States to store API data (optional for now, just logging)
@@ -73,12 +67,6 @@ export default function Home() {
                 setImportantDates(datesRes.data);
                 setAboutConference(aboutRes.data);
                 setSliderImages(sliderImg.data.data);
-
-                // Log data for now
-                // console.log('Conference Highlights:', highlightsRes.data);
-                // console.log('Important Dates:', datesRes.data);
-                // console.log('About Conference:', aboutRes.data);
-                // console.log('Slider Images:', sliderImg.data.data);
             } catch (error) {
                 console.error('Error fetching home page data:', error);
             }
@@ -111,7 +99,7 @@ export default function Home() {
                         {/* <Carousel.Caption>
                             <h1>First slide label</h1>
                             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption> */}
+                        </Carousel.Caption> Note: WE can add heading or paragraph here. Basically we can customize it according to our */}
                     </Carousel.Item>
                 ))}
             </Carousel>
@@ -254,6 +242,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+            <Footer />
         </div>
     );
 }
