@@ -1,33 +1,7 @@
-// import axios from 'axios'; // Add Axios
-// import { useEffect, useState } from 'react';
-
-// export default function Committees() {
-//     const [committe, setCommitte] = useState([]);
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             try {
-//                 const [committeData] = await Promise.all([axios.get('/api/committe/2')]);
-//                 setCommitte(committeData.data);
-
-//                 // Log data for now
-//                 console.log('Conference Highlights:', committeData.data);
-//             } catch (error) {
-//                 console.error('Error fetching home page data:', error);
-//             }
-//         };
-
-//         fetchData();
-//     }, []);
-//     return (
-//         <>
-//             <div className="container">{JSON.stringify(committe)}</div>
-//         </>
-//     );
-// }
-
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Layout from './Layout';
+import ShimmerUI from './ShimmerUI';
 
 export default function Committees() {
     // 1. Set initial state to null, as we're fetching a single object, not an array.
@@ -55,7 +29,7 @@ export default function Committees() {
 
     // Display a loading message while data is being fetched.
     if (isLoading) {
-        return <div className="container">Loading...</div>;
+        return <ShimmerUI />;
     }
 
     // Display an error message if the API call fails.
@@ -65,13 +39,24 @@ export default function Committees() {
 
     // 4. Render the title and content properly once data is available.
     return (
-        <div className="p-3">
-            {committee && (
-                <article className="prose max-w-none">
-                    <h1>{committee.title}</h1>
-                    <div dangerouslySetInnerHTML={{ __html: committee.content }} />
-                </article>
-            )}
+        <div className="solid-black border p-3">
+            <Layout>
+                {committee && (
+                    // <article className="prose max-w-none">
+                    //     {/* <h1>{committee.title}</h1> */}
+                    //     <div className="container" dangerouslySetInnerHTML={{ __html: committee.content }} />
+                    // </article>
+                    // <article className="max-w-none">
+                    //     <div className="max-w-none" dangerouslySetInnerHTML={{ __html: committee.content }} />
+                    // </article>
+                    <article className="prose max-w-none">
+                        <div
+                            className="[&_li]:ml-6 [&_li]:list-disc [&_table]:w-full [&_table]:table-auto [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1"
+                            dangerouslySetInnerHTML={{ __html: committee.content }}
+                        />
+                    </article>
+                )}
+            </Layout>
         </div>
     );
 }

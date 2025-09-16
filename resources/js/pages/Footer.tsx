@@ -112,7 +112,7 @@ export default function AboutUs() {
                     {/* Copyright */}
                     <div className="mt-8 border-t border-blue-600 pt-8 text-center">
                         <p className="text-sm text-blue-100">
-                            © 2024 JSPM University - School of Mechanical Manufacturing Sciences. All rights reserved.
+                            © 2025 JSPM University - School of Mechanical Manufacturing Sciences. All rights reserved.
                         </p>
                     </div>
                 </div>

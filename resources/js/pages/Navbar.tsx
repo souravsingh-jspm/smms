@@ -1,27 +1,28 @@
 import { Button } from '@/components/ui/button';
+import { Link, usePage } from '@inertiajs/react';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 interface LayoutProps {
     children: React.ReactNode;
 }
 
 const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
+    { name: 'Home', href: '/home' },
+    { name: 'About Us', href: '/about-us' },
     { name: 'Call for Papers', href: '/call-for-papers' },
     { name: 'Paper Overview', href: '/paper-overview' },
-    { name: 'Committees', href: '/committees' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'Committees', href: '/committee' },
+    { name: 'Contact Us', href: '/contact-us' },
     { name: 'Pune Darshan', href: '/pune-darshan' },
 ];
 
-export default function AboutUs() {
+export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { url } = usePage(); // gives current URL
 
     return (
         <>
-            <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <nav className="mx-auto max-w-7xl border-black px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
                     {/* Logo */}
                     <div className="flex items-center">
@@ -41,11 +42,9 @@ export default function AboutUs() {
                         {navigation.map((item) => (
                             <Link
                                 key={item.name}
-                                to={item.href}
+                                href={item.href} // ✅ use href (not "to")
                                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                                    location.pathname === item.href
-                                        ? 'bg-red-50 text-conference-red'
-                                        : 'text-gray-700 hover:bg-blue-50 hover:text-conference-blue'
+                                    url === item.href ? 'bg-red-50 text-conference-red' : 'text-gray-700 hover:bg-blue-50 hover:text-conference-blue'
                                 }`}
                             >
                                 {item.name}
@@ -75,7 +74,7 @@ export default function AboutUs() {
                             {navigation.map((item) => (
                                 <Link
                                     key={item.name}
-                                    to={item.href}
+                                    href={item.href}
                                     className={`block rounded-md px-3 py-2 text-base font-medium transition-colors duration-200 ${
                                         location.pathname === item.href
                                             ? 'bg-red-50 text-conference-red'
@@ -86,13 +85,13 @@ export default function AboutUs() {
                                     {item.name}
                                 </Link>
                             ))}
-                            <div className="pt-4">
+                            {/* <div className="pt-4">
                                 <Button asChild className="w-full bg-conference-red font-semibold text-white hover:bg-conference-red/90">
                                     <Link to="/call-for-papers" onClick={() => setMobileMenuOpen(false)}>
                                         Submit Paper
                                     </Link>
                                 </Button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 )}

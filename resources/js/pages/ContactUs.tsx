@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Building, Clock, Globe, Mail, MapPin, Phone, Send, Users } from 'lucide-react';
 import { useState } from 'react';
+import Layout from './Layout';
 
 const contactInfo = [
     {
@@ -95,127 +96,128 @@ export default function ContactUs() {
 
     return (
         <div>
-            {/* Hero Section */}
-            <section className="bg-gradient-to-r from-conference-blue to-conference-blue/80 py-20 text-white">
-                <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-                    <h1 className="mb-6 text-4xl font-bold md:text-5xl">Contact Us</h1>
-                    <p className="mx-auto max-w-3xl text-xl text-blue-100">Get in touch with us for any questions about ICETMMS 2024</p>
-                </div>
-            </section>
+            <Layout>
+                {/* Hero Section */}
+                <section className="bg-gradient-to-r from-conference-blue to-conference-blue/80 py-20 text-white">
+                    <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+                        <h1 className="mb-6 text-4xl font-bold md:text-5xl">Contact Us</h1>
+                        <p className="mx-auto max-w-3xl text-xl text-blue-100">Get in touch with us for any questions about ICETMMS 2024</p>
+                    </div>
+                </section>
 
-            {/* Contact Form and Info */}
-            <section className="py-16">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="grid gap-12 lg:grid-cols-2">
-                        {/* Contact Form */}
-                        <div>
-                            <Card className="border-conference-blue/20">
-                                <CardHeader>
-                                    <CardTitle className="text-2xl text-conference-blue">Send us a Message</CardTitle>
-                                    <p className="text-gray-600">Fill out the form below and we'll get back to you soon</p>
-                                </CardHeader>
-                                <CardContent>
-                                    <form onSubmit={handleSubmit} className="space-y-6">
-                                        <div className="grid gap-4 md:grid-cols-2">
-                                            <div>
-                                                <Label htmlFor="name">Full Name *</Label>
-                                                <Input
-                                                    id="name"
-                                                    name="name"
-                                                    type="text"
-                                                    placeholder="Your full name"
-                                                    value={formData.name}
-                                                    onChange={handleInputChange}
-                                                    required
-                                                    className="mt-1"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="email">Email Address *</Label>
-                                                <Input
-                                                    id="email"
-                                                    name="email"
-                                                    type="email"
-                                                    placeholder="your.email@example.com"
-                                                    value={formData.email}
-                                                    onChange={handleInputChange}
-                                                    required
-                                                    className="mt-1"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <Label htmlFor="subject">Subject *</Label>
-                                            <Input
-                                                id="subject"
-                                                name="subject"
-                                                type="text"
-                                                placeholder="Brief subject of your inquiry"
-                                                value={formData.subject}
-                                                onChange={handleInputChange}
-                                                required
-                                                className="mt-1"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <Label htmlFor="message">Message *</Label>
-                                            <Textarea
-                                                id="message"
-                                                name="message"
-                                                placeholder="Please provide details about your inquiry..."
-                                                value={formData.message}
-                                                onChange={handleInputChange}
-                                                required
-                                                className="mt-1"
-                                                rows={6}
-                                            />
-                                        </div>
-
-                                        <Button
-                                            type="submit"
-                                            className="w-full bg-conference-red font-semibold text-white hover:bg-conference-red/90"
-                                            size="lg"
-                                        >
-                                            <Send className="mr-2 h-4 w-4" />
-                                            Send Message
-                                        </Button>
-                                    </form>
-                                </CardContent>
-                            </Card>
-                        </div>
-
-                        {/* Contact Information */}
-                        <div className="space-y-6">
-                            {contactInfo.map((info, index) => (
-                                <Card key={index} className="border-conference-blue/20">
-                                    <CardContent className="p-6">
-                                        <div className="flex items-start space-x-4">
-                                            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-conference-blue">
-                                                <info.icon className="h-6 w-6 text-white" />
-                                            </div>
-                                            <div>
-                                                <h3 className="mb-2 text-lg font-semibold text-conference-blue">{info.title}</h3>
-                                                <div className="space-y-1">
-                                                    {info.content.map((line, lineIndex) => (
-                                                        <p key={lineIndex} className="text-sm text-gray-700">
-                                                            {line}
-                                                        </p>
-                                                    ))}
+                {/* Contact Form and Info */}
+                <section className="py-16">
+                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <div className="grid gap-12 lg:grid-cols-2">
+                            {/* Contact Form */}
+                            <div>
+                                <Card className="border-conference-blue/20">
+                                    <CardHeader>
+                                        <CardTitle className="text-2xl text-conference-blue">Send us a Message</CardTitle>
+                                        <p className="text-gray-600">Fill out the form below and we'll get back to you soon</p>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <form onSubmit={handleSubmit} className="space-y-6">
+                                            <div className="grid gap-4 md:grid-cols-2">
+                                                <div>
+                                                    <Label htmlFor="name">Full Name *</Label>
+                                                    <Input
+                                                        id="name"
+                                                        name="name"
+                                                        type="text"
+                                                        placeholder="Your full name"
+                                                        value={formData.name}
+                                                        onChange={handleInputChange}
+                                                        required
+                                                        className="mt-1"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <Label htmlFor="email">Email Address *</Label>
+                                                    <Input
+                                                        id="email"
+                                                        name="email"
+                                                        type="email"
+                                                        placeholder="your.email@example.com"
+                                                        value={formData.email}
+                                                        onChange={handleInputChange}
+                                                        required
+                                                        className="mt-1"
+                                                    />
                                                 </div>
                                             </div>
-                                        </div>
+
+                                            <div>
+                                                <Label htmlFor="subject">Subject *</Label>
+                                                <Input
+                                                    id="subject"
+                                                    name="subject"
+                                                    type="text"
+                                                    placeholder="Brief subject of your inquiry"
+                                                    value={formData.subject}
+                                                    onChange={handleInputChange}
+                                                    required
+                                                    className="mt-1"
+                                                />
+                                            </div>
+
+                                            <div>
+                                                <Label htmlFor="message">Message *</Label>
+                                                <Textarea
+                                                    id="message"
+                                                    name="message"
+                                                    placeholder="Please provide details about your inquiry..."
+                                                    value={formData.message}
+                                                    onChange={handleInputChange}
+                                                    required
+                                                    className="mt-1"
+                                                    rows={6}
+                                                />
+                                            </div>
+
+                                            <Button
+                                                type="submit"
+                                                className="w-full bg-conference-red font-semibold text-white hover:bg-conference-red/90"
+                                                size="lg"
+                                            >
+                                                <Send className="mr-2 h-4 w-4" />
+                                                Send Message
+                                            </Button>
+                                        </form>
                                     </CardContent>
                                 </Card>
-                            ))}
+                            </div>
+
+                            {/* Contact Information */}
+                            <div className="space-y-6">
+                                {contactInfo.map((info, index) => (
+                                    <Card key={index} className="border-conference-blue/20">
+                                        <CardContent className="p-6">
+                                            <div className="flex items-start space-x-4">
+                                                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-conference-blue">
+                                                    <info.icon className="h-6 w-6 text-white" />
+                                                </div>
+                                                <div>
+                                                    <h3 className="mb-2 text-lg font-semibold text-conference-blue">{info.title}</h3>
+                                                    <div className="space-y-1">
+                                                        {info.content.map((line, lineIndex) => (
+                                                            <p key={lineIndex} className="text-sm text-gray-700">
+                                                                {line}
+                                                            </p>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Quick Contacts */}
-            {/* <section className="bg-gray-50 py-16">
+                {/* Quick Contacts */}
+                {/* <section className="bg-gray-50 py-16">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mb-12 text-center">
                         <h2 className="mb-4 text-3xl font-bold text-conference-blue md:text-4xl">Quick Contacts</h2>
@@ -252,8 +254,8 @@ export default function ContactUs() {
                 </div>
             </section> */}
 
-            {/* Map Section */}
-            {/* <section className="py-16">
+                {/* Map Section */}
+                {/* <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-conference-blue mb-4">
@@ -322,6 +324,7 @@ export default function ContactUs() {
           </div>
         </div>
       </section> */}
+            </Layout>
         </div>
     );
 }
