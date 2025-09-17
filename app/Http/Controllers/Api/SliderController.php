@@ -24,7 +24,7 @@ class SliderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'description' => 'nullable|string',
             'link_url' => 'nullable|url',
             'button_text' => 'nullable|string|max:50',
@@ -62,7 +62,7 @@ class SliderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'sometimes|required|string|max:255',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Image is optional on update
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg', // Image is optional on update
             'description' => 'nullable|string',
             'link_url' => 'nullable|url',
             'button_text' => 'nullable|string|max:50',

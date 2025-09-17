@@ -3,22 +3,22 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Building, Clock, Globe, Mail, MapPin, Phone, Send, Users } from 'lucide-react';
+import { Building, Globe, Mail, Phone, Send, Users } from 'lucide-react';
 import { useState } from 'react';
 import Layout from './Layout';
 
 const contactInfo = [
-    {
-        icon: MapPin,
-        title: 'Address',
-        content: [
-            'JSPM University',
-            'School of Mechanical Manufacturing Sciences',
-            'Survey No. 58, Indrayani Nagar',
-            'Handewadi Road, Hadapsar',
-            'Pune - 411028, Maharashtra, India',
-        ],
-    },
+    // {
+    //     icon: MapPin,
+    //     title: 'Address',
+    //     content: [
+    //         'JSPM University',
+    //         'School of Mechanical Manufacturing Sciences',
+    //         'Survey No. 58, Indrayani Nagar',
+    //         'Handewadi Road, Hadapsar',
+    //         'Pune - 411028, Maharashtra, India',
+    //     ],
+    // },
     {
         icon: Phone,
         title: 'Phone',
@@ -34,11 +34,11 @@ const contactInfo = [
             'accommodation@jspm.edu.in (Accommodation)',
         ],
     },
-    {
-        icon: Clock,
-        title: 'Office Hours',
-        content: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 9:00 AM - 2:00 PM', 'Sunday: Closed', 'Conference Support: 24/7 during event'],
-    },
+    // {
+    //     icon: Clock,
+    //     title: 'Office Hours',
+    //     content: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 9:00 AM - 2:00 PM', 'Sunday: Closed', 'Conference Support: 24/7 during event'],
+    // },
 ];
 
 const quickContacts = [

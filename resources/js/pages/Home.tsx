@@ -1,3 +1,5 @@
+import UniverstiConferenceImage from '@/assets/images/University Conference Image.png';
+import UniversityImage from '@/assets/images/University Image.jpg';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import axios from 'axios'; // Add Axios
@@ -154,8 +156,9 @@ export default function Home() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="flex h-80 items-center justify-center rounded-lg bg-gray-200">
-                                <span className="text-lg text-gray-500">Conference Overview Image</span>
+                            <div className="flex h-80 items-center justify-center rounded-xl">
+                                <img className="rounded-xl" src={UniverstiConferenceImage} alt="conference image" />
+                                {/* <span className="text-lg text-gray-500">Conference Overview Image</span> */}
                             </div>
                         </div>
                     </div>
@@ -169,7 +172,7 @@ export default function Home() {
                             <p className="text-xl text-blue-100">Mark your calendar for these key deadlines</p>
                         </div>
 
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {importantDates.map((item, index) => (
                                 <Card key={index} className="border-white/20 bg-white/10 text-white">
                                     <CardHeader className="pb-3">
@@ -237,8 +240,9 @@ export default function Home() {
                                     </Button>
                                 </div>
                             </div>
-                            <div className="flex h-80 items-center justify-center rounded-lg bg-gray-200">
-                                <span className="text-lg text-gray-500">Campus Image / Map</span>
+                            <div className="flex h-80 items-center justify-center">
+                                <img className="rounded-xl" src={UniversityImage} alt="" />
+                                {/* <span className="text-lg text-gray-500">Campus Image / Map</span> */}
                             </div>
                         </div>
                     </div>

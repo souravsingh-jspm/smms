@@ -92,6 +92,8 @@ export default function SliderManager() {
                     Accept: 'application/json', // Important for Laravel validation errors
                 },
             });
+            const data = await response.json();
+            console.log(data, 'Check the response status');
 
             if (!response.ok) {
                 console.log(submissionData);

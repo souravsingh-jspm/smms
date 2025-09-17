@@ -17,11 +17,11 @@ const mainNavItems: NavItem[] = [
         href: '/admin/committee',
         icon: LayoutGrid,
     },
-    {
-        title: 'Call For Papers',
-        href: '/admin/call-for-page',
-        icon: LayoutGrid,
-    },
+    // {
+    //     title: 'Call For Papers',
+    //     href: '/admin/call-for-page',
+    //     icon: LayoutGrid,
+    // },
     {
         title: 'Home Page Sliders',
         href: '/admin/slider',

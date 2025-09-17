@@ -39,7 +39,7 @@ export default function Committees() {
 
     // 4. Render the title and content properly once data is available.
     return (
-        <div className="solid-black border p-3">
+        <div className="solid-black border">
             <Layout>
                 {committee && (
                     // <article className="prose max-w-none">
@@ -49,7 +49,7 @@ export default function Committees() {
                     // <article className="max-w-none">
                     //     <div className="max-w-none" dangerouslySetInnerHTML={{ __html: committee.content }} />
                     // </article>
-                    <article className="prose max-w-none">
+                    <article className="prose max-w-none border-t-2 border-black px-5 py-4">
                         <div
                             className="[&_li]:ml-6 [&_li]:list-disc [&_table]:w-full [&_table]:table-auto [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1"
                             dangerouslySetInnerHTML={{ __html: committee.content }}

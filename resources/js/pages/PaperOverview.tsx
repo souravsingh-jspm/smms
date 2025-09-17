@@ -199,9 +199,9 @@ export default function PaperOverview() {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="flex h-80 items-center justify-center rounded-lg bg-gray-200">
+                            {/* <div className="flex h-80 items-center justify-center rounded-lg bg-gray-200">
                                 <span className="text-lg text-gray-500">Quality Assessment Illustration</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>
