@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 
 // 1. Define the specific ID of the committee to always edit.
 //    Replace '1' with the actual ID from your database.
-const COMMITTEE_ID_TO_EDIT = 2;
+const COMMITTEE_ID_TO_EDIT = 1;
 
 export default function TinyEditor() {
     const breadcrumbs: BreadcrumbItem[] = [

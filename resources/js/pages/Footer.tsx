@@ -5,7 +5,7 @@ export default function AboutUs() {
     const navigation = [
         { name: 'Home', href: '/home' },
         { name: 'About Us', href: '/about-us' },
-        { name: 'Call for Papers', href: '/call-for-papers' },
+        // { name: 'Call for Papers', href: '/call-for-papers' },
         { name: 'Paper Overview', href: '/paper-overview' },
         { name: 'Committees', href: '/committee' },
         { name: 'Contact Us', href: '/contact-us' },

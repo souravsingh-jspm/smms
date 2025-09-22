@@ -14,7 +14,7 @@ export default function Committees() {
         const fetchData = async () => {
             try {
                 // 3. Simplified the API call - no need for Promise.all for a single request.
-                const response = await axios.get('/api/committe/2');
+                const response = await axios.get('/api/committe/1');
                 setCommittee(response.data);
             } catch (err) {
                 console.error('Error fetching committee data:', err);
@@ -41,6 +41,12 @@ export default function Committees() {
     return (
         <div className="solid-black border">
             <Layout>
+                <section className="bg-gradient-to-r from-conference-blue to-conference-red py-20 text-white">
+                    <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+                        <h1 className="mb-6 text-4xl font-bold md:text-5xl">Committee</h1>
+                        <p className="mx-auto max-w-3xl text-xl text-blue-100">A short description is required here....</p>
+                    </div>
+                </section>
                 {committee && (
                     // <article className="prose max-w-none">
                     //     {/* <h1>{committee.title}</h1> */}

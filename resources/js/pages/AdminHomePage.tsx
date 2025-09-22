@@ -159,7 +159,7 @@ export default function AdminConferencePage() {
                             className="w-full border p-2"
                         />
                         <textarea
-                            placeholder="Description"
+                            placeholder="Date/Description"
                             value={importantForm.description}
                             onChange={(e) => setImportantForm({ ...importantForm, description: e.target.value })}
                             className="w-full border p-2"

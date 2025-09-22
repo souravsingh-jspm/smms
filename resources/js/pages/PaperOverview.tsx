@@ -91,7 +91,7 @@ export default function PaperOverview() {
         <div>
             <Layout>
                 {/* Hero Section */}
-                <section className="bg-gradient-to-r from-conference-blue to-conference-blue/80 py-20 text-white">
+                <section className="bg-gradient-to-r from-conference-blue to-conference-red py-20 text-white">
                     <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
                         <h1 className="mb-6 text-4xl font-bold md:text-5xl">Paper Overview</h1>
                         <p className="mx-auto max-w-3xl text-xl text-blue-100">

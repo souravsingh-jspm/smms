@@ -176,7 +176,7 @@ export default function Home() {
                             {importantDates.map((item, index) => (
                                 <Card key={index} className="border-white/20 bg-white/10 text-white">
                                     <CardHeader className="pb-3">
-                                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-conference-red">
+                                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full">
                                             <Clock className="h-6 w-6 text-white" />
                                         </div>
                                         <CardTitle className="text-lg font-semibold">{item?.title}</CardTitle>
