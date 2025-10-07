@@ -237,6 +237,7 @@ export default function SliderManager() {
                                 <img
                                     src={`${API_BASE_URL}/storage/${slider.image_path}`}
                                     alt={slider.title}
+                                    loading="lazy"
                                     className="h-auto w-40 rounded-md border object-cover"
                                 />
                                 <div className="flex-grow">

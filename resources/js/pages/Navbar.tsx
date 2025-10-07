@@ -5,9 +5,9 @@ import { useState } from 'react';
 interface LayoutProps {
     children: React.ReactNode;
 }
-
+const universityLink = 'https://jspmuni.ac.in/';
 const navigation = [
-    { name: 'Home', href: '/home' },
+    { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about-us' },
     // { name: 'Call for Papers', href: '/call-for-papers' },
     { name: 'Paper Overview', href: '/paper-overview' },
@@ -25,7 +25,7 @@ export default function Navbar() {
             <nav className="mx-auto max-w-7xl border-black px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
                     {/* Logo */}
-                    <div className="flex items-center">
+                    <a href={universityLink} className="flex items-center">
                         <div className="flex items-center space-x-3">
                             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-conference-blue">
                                 <span className="text-xl font-bold text-white">J</span>
@@ -35,7 +35,7 @@ export default function Navbar() {
                                 <div className="text-sm font-medium text-conference-red">SMMS Conference</div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     {/* Desktop Navigation */}
                     <div className="hidden items-center space-x-1 lg:flex">

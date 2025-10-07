@@ -44,7 +44,6 @@ export default function Committees() {
                 <section className="bg-gradient-to-r from-conference-blue to-conference-red py-20 text-white">
                     <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
                         <h1 className="mb-6 text-4xl font-bold md:text-5xl">Committee</h1>
-                        <p className="mx-auto max-w-3xl text-xl text-blue-100">A short description is required here....</p>
                     </div>
                 </section>
                 {committee && (
@@ -55,12 +54,28 @@ export default function Committees() {
                     // <article className="max-w-none">
                     //     <div className="max-w-none" dangerouslySetInnerHTML={{ __html: committee.content }} />
                     // </article>
-                    <article className="prose max-w-none border-t-2 border-black px-5 py-4">
-                        <div
-                            className="[&_li]:ml-6 [&_li]:list-disc [&_table]:w-full [&_table]:table-auto [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1"
-                            dangerouslySetInnerHTML={{ __html: committee.content }}
-                        />
-                    </article>
+                    <div className="row">
+                        <div className="col-md-2 d-none d-lg-block">
+                            {/* <div className="bg-light border p-3" style={{ height: '600px' }}>
+                                Left Ad Space
+                            </div> */}
+                        </div>
+
+                        <div className="col-lg-8 col-md-12 border-dar border">
+                            <article className="prose border-t-2 px-3 py-4">
+                                <div
+                                    className="[&_li]:ml-6 [&_li]:list-disc [&_table]:w-full [&_table]:table-auto [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1"
+                                    dangerouslySetInnerHTML={{ __html: committee.content }}
+                                />
+                            </article>
+                        </div>
+
+                        <div className="col-md-2 d-none d-lg-block">
+                            {/* <div className="bg-light border p-3" style={{ height: '600px' }}>
+                                Right Ad Space
+                            </div> */}
+                        </div>
+                    </div>
                 )}
             </Layout>
         </div>

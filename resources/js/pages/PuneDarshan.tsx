@@ -13,26 +13,6 @@ import Layout from './Layout';
 
 const attractions = [
     {
-        name: 'Shaniwar Wada',
-        description:
-            "A magnificent 18th-century fortification and palace, Shaniwar Wada is a symbol of Pune's rich Maratha heritage. Built by the Peshwas, this historical monument offers a glimpse into royal architecture and hosts the famous sound and light show.",
-        image: ShaniwarWada,
-        timings: '9:00 AM - 6:30 PM',
-        duration: '2-3 hours',
-        rating: 4.2,
-        highlights: ['Historical Architecture', 'Light & Sound Show', 'Maratha Heritage', 'Photography'],
-    },
-    {
-        name: 'Aga Khan Palace',
-        description:
-            'A monument of great historical significance, Aga Khan Palace served as a prison for Mahatma Gandhi during the Quit India Movement. This beautiful palace now houses a Gandhi Museum and is surrounded by lush gardens.',
-        image: Agakhan,
-        timings: '9:00 AM - 5:30 PM',
-        duration: '1-2 hours',
-        rating: 4.3,
-        highlights: ['Gandhi Museum', 'Historical Significance', 'Beautiful Gardens', 'Peaceful Environment'],
-    },
-    {
         name: 'Dagdusheth Halwai Ganapati Temple',
         description:
             'One of the most revered temples in Pune, famous for its magnificent Ganesh idol adorned with gold jewelry. The temple attracts millions of devotees, especially during Ganesh Chaturthi celebrations.',
@@ -43,6 +23,16 @@ const attractions = [
         highlights: ['Religious Significance', 'Gold Decorated Idol', 'Festival Celebrations', 'Spiritual Experience'],
     },
     {
+        name: 'Shaniwar Wada',
+        description:
+            "A magnificent 18th-century fortification and palace, Shaniwar Wada is a symbol of Pune's rich Maratha heritage. Built by the Peshwas, this historical monument offers a glimpse into royal architecture and hosts the famous sound and light show.",
+        image: ShaniwarWada,
+        timings: '9:00 AM - 6:30 PM',
+        duration: '2-3 hours',
+        rating: 4.2,
+        highlights: ['Historical Architecture', 'Light & Sound Show', 'Maratha Heritage', 'Photography'],
+    },
+    {
         name: 'Sinhagad Fort',
         description:
             "A hilltop military fortification located southwest of Pune, offering breathtaking views and trekking opportunities. Famous for the brave battle fought by Tanaji Malusare, it's a perfect destination for history enthusiasts and adventure seekers.",
@@ -51,6 +41,16 @@ const attractions = [
         duration: '4-5 hours',
         rating: 4.4,
         highlights: ['Trekking', 'Panoramic Views', 'Historical Fort', 'Adventure Sports'],
+    },
+    {
+        name: 'Aga Khan Palace',
+        description:
+            'A monument of great historical significance, Aga Khan Palace served as a prison for Mahatma Gandhi during the Quit India Movement. This beautiful palace now houses a Gandhi Museum and is surrounded by lush gardens.',
+        image: Agakhan,
+        timings: '9:00 AM - 5:30 PM',
+        duration: '1-2 hours',
+        rating: 4.3,
+        highlights: ['Gandhi Museum', 'Historical Significance', 'Beautiful Gardens', 'Peaceful Environment'],
     },
 ];
 
@@ -115,7 +115,7 @@ function AttractionCard({ attraction }: { attraction: any }) {
         <Card className="overflow-hidden border-conference-blue/20 transition-shadow duration-200 hover:shadow-lg">
             <div className="relative">
                 <div className="flex h-48 justify-center rounded-lg">
-                    <img src={attraction.image} alt="" height={50} />
+                    <img src={attraction.image} loading="lazy" alt="" height={50} />
                 </div>
             </div>
 
@@ -204,7 +204,7 @@ export default function PuneDarshan() {
                 </section>
 
                 {/* Nearby Places */}
-                <section className="border-2 border-solid border-[black] bg-conference-blue py-16 text-white">
+                <section className="bg-[#dfe1e9] py-16 text-white">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="mb-12 text-center">
                             <h2 className="mb-4 text-3xl font-bold md:text-4xl">Nearby Places to Explore</h2>

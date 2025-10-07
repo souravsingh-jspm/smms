@@ -3,9 +3,14 @@ import UniversityImage from '@/assets/images/University Image.jpg';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import axios from 'axios'; // Add Axios
-import { Award, Clock, FileText, GraduationCap, MapPin, Users } from 'lucide-react';
+import { Award, FileText, GraduationCap, MapPin, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+// import Carousel from 'react-bootstrap/Carousel';
+
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import { Autoplay, EffectFade } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Layout from './Layout';
 
 const carouselImages = [
@@ -45,6 +50,8 @@ export default function Home() {
     const [conferenceHighlights, setConferenceHighlights] = useState([]);
     const [importantDates, setImportantDates] = useState([]);
     const [aboutConference, setAboutConference] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     const [sliderImages, setSliderImages] = useState([]);
     // Auto-advance carousel
     useEffect(() => {
@@ -55,20 +62,32 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
+        const fetchSliderImages = async () => {
+            try {
+                const response = await axios.get('/api/slider', { cache: 'no-store' });
+                setSliderImages(response.data.data || []);
+            } catch (error) {
+                console.error('Error loading slider images:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchSliderImages();
+    }, []);
+
+    useEffect(() => {
         // Fetch all data when component mounts
         const fetchData = async () => {
             try {
-                const [highlightsRes, datesRes, aboutRes, sliderImg] = await Promise.all([
+                const [highlightsRes, datesRes, aboutRes] = await Promise.all([
                     axios.get('/api/conferencehigh-lights'),
                     axios.get('/api/important-dates'),
                     axios.get('/api/about-conference'),
-                    axios.get('/api/slider'),
                 ]);
 
                 setConferenceHighlights(highlightsRes.data);
                 setImportantDates(datesRes.data);
                 setAboutConference(aboutRes.data);
-                setSliderImages(sliderImg.data.data);
             } catch (error) {
                 console.error('Error fetching home page data:', error);
             }
@@ -95,20 +114,45 @@ export default function Home() {
         <div>
             <Layout>
                 {/* Hero Carousel Section */}
-                <Carousel data-bs-theme="dark">
-                    {sliderImages.map((image) => (
-                        <Carousel.Item>
-                            <img className="d-block w-100" src={`storage/${image.image_path}`} alt="First slide" />
-                            {/* <Carousel.Caption>
-                            <h1>First slide label</h1>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption> Note: WE can add heading or paragraph here. Basically we can customize it according to our */}
-                        </Carousel.Item>
+                {/* {loading ? (
+                    <div className="flex h-[80vh] items-center justify-center bg-gray-100"></div>
+                ) : (
+                    <Carousel data-bs-theme="dark" fade interval={4000} pause="hover" className="overflow-hidden rounded-xl shadow-lg">
+                        {sliderImages.map((image) => (
+                            <Carousel.Item key={image.id}>
+                                <img
+                                    src={`storage/${image.image_path}`}
+                                    alt={image.alt || 'Conference Slide'}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="d-block w-100 object-cover"
+                                />
+                            </Carousel.Item>
+                        ))}
+                    </Carousel>
+                )} */}
+                <Swiper
+                    modules={[EffectFade, Autoplay]}
+                    effect="fade"
+                    autoplay={{ delay: 1000, disableOnInteraction: false }}
+                    loop
+                    className="h-[60vh] overflow-hidden rounded-xl bg-[#c5ced1] shadow sm:h-[80vh]"
+                >
+                    {sliderImages.map((img) => (
+                        <SwiperSlide key={img.id} className="relative h-full w-full">
+                            <img
+                                src={`/storage/${img.image_path}`}
+                                alt={img.alt || 'Conference Slide'}
+                                className="absolute h-full w-full object-contain"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </SwiperSlide>
                     ))}
-                </Carousel>
+                </Swiper>
 
                 {/* Quick Stats Section */}
-                <section className="bg-gray-50 py-16">
+                {/* <section className="bg-gray-50 py-16">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                             {quickStats.map((stat, index) => (
@@ -122,7 +166,7 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* Conference Overview */}
                 <section className="py-16">
@@ -157,7 +201,7 @@ export default function Home() {
                                 </ul>
                             </div>
                             <div className="flex h-80 items-center justify-center rounded-xl">
-                                <img className="rounded-xl" src={UniverstiConferenceImage} alt="conference image" />
+                                <img className="rounded-xl" loading="lazy" src={UniverstiConferenceImage} alt="conference image" />
                                 {/* <span className="text-lg text-gray-500">Conference Overview Image</span> */}
                             </div>
                         </div>
@@ -176,13 +220,13 @@ export default function Home() {
                             {importantDates.map((item, index) => (
                                 <Card key={index} className="border-white/20 bg-white/10 text-white">
                                     <CardHeader className="pb-3">
-                                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                                        {/* <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full">
                                             <Clock className="h-6 w-6 text-white" />
-                                        </div>
-                                        <CardTitle className="text-lg font-semibold">{item?.title}</CardTitle>
+                                        </div> */}
+                                        <CardTitle className="text-center text-xl font-semibold">{item?.title}</CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="font-medium text-blue-100">{item.description}</p>{' '}
+                                        <p className="text-center font-extrabold text-white">{item.description}</p>{' '}
                                     </CardContent>
                                 </Card>
                             ))}
@@ -198,9 +242,9 @@ export default function Home() {
                             Don't miss this opportunity to be part of the premier conference in mechanical manufacturing sciences
                         </p>
                         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                            <Button asChild size="lg" className="bg-white px-8 py-3 text-lg font-semibold text-conference-blue hover:bg-gray-100">
+                            {/* <Button asChild size="lg" className="bg-white px-8 py-3 text-lg font-semibold text-conference-blue hover:bg-gray-100">
                                 <a href="/call-for-papers">Submit Paper Now</a>
-                            </Button>
+                            </Button> */}
                             <Button
                                 asChild
                                 size="lg"
@@ -241,7 +285,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="flex h-80 items-center justify-center">
-                                <img className="rounded-xl" src={UniversityImage} alt="" />
+                                <img className="rounded-xl" loading="lazy" src={UniversityImage} alt="" />
                                 {/* <span className="text-lg text-gray-500">Campus Image / Map</span> */}
                             </div>
                         </div>

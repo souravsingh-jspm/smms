@@ -179,8 +179,11 @@ export default function PaperOverview() {
                     </div>
                 </section>
 
-                {/* Quality Standards */}
                 <section className="py-16">
+                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"></div>
+                </section>
+                {/* Quality Standards */}
+                <section className="bg-gray-50 py-16">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="grid items-center gap-12 md:grid-cols-2">
                             <div>
@@ -207,7 +210,7 @@ export default function PaperOverview() {
                 </section>
 
                 {/* Publication Information */}
-                <section className="bg-conference-blue py-16 text-white">
+                {/* <section className="bg-conference-blue py-16 text-white">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="mb-12 text-center">
                             <h2 className="mb-4 text-3xl font-bold md:text-4xl">Publication Information</h2>
@@ -245,7 +248,7 @@ export default function PaperOverview() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
             </Layout>
         </div>
     );

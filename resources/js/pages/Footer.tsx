@@ -1,9 +1,14 @@
+import Facebook from '@/assets/images/Facebook.png';
+import Instagram from '@/assets/images/Instagram.png';
+import LinkedIn from '@/assets/images/LinkedIn.png';
 import { Link } from '@inertiajs/react';
-import { Facebook, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 export default function AboutUs() {
+    const universityLink = 'https://jspmuni.ac.in/';
+
     const navigation = [
-        { name: 'Home', href: '/home' },
+        { name: 'Home', href: '/' },
         { name: 'About Us', href: '/about-us' },
         // { name: 'Call for Papers', href: '/call-for-papers' },
         { name: 'Paper Overview', href: '/paper-overview' },
@@ -18,15 +23,15 @@ export default function AboutUs() {
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                         {/* About */}
                         <div>
-                            <div className="mb-4 flex items-center space-x-3">
+                            <a href={universityLink} className="mb-4 flex items-center space-x-3">
                                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white">
                                     <span className="text-lg font-bold text-conference-blue">J</span>
                                 </div>
-                                <div>
+                                <div className="text-white">
                                     <div className="text-lg font-bold">JSPM University</div>
                                     <div className="text-conference-red-100 text-sm">SMMS</div>
                                 </div>
-                            </div>
+                            </a>
                             <p className="text-sm leading-relaxed text-blue-100">
                                 International Conference on Emerging Trends in Mechanical Manufacturing Sciences
                             </p>
@@ -38,7 +43,7 @@ export default function AboutUs() {
                             <ul className="space-y-2">
                                 {navigation.map((item) => (
                                     <li key={item.name}>
-                                        <Link href={item.href} className="text-sm text-blue-100 transition-colors duration-200 hover:text-white">
+                                        <Link href={item.href} className="text-sm text-white transition-colors duration-200 hover:text-white">
                                             {item.name}
                                         </Link>
                                     </li>
@@ -52,7 +57,7 @@ export default function AboutUs() {
                             <ul className="space-y-2">
                                 {navigation.slice(2, 5).map((item) => (
                                     <li key={item.name}>
-                                        <Link href={item.href} className="text-sm text-blue-100 transition-colors duration-200 hover:text-white">
+                                        <Link href={item.href} className="text-sm text-white transition-colors duration-200 hover:text-white">
                                             {item.name}
                                         </Link>
                                     </li>
@@ -86,23 +91,14 @@ export default function AboutUs() {
                             <div className="mt-6">
                                 <h4 className="mb-3 font-medium">Follow Us</h4>
                                 <div className="flex space-x-3">
-                                    <a
-                                        href="#"
-                                        className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 transition-colors duration-200 hover:bg-blue-500"
-                                    >
-                                        <Facebook size={16} />
+                                    <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full duration-200">
+                                        <img src={Facebook} />
                                     </a>
-                                    <a
-                                        href="#"
-                                        className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 transition-colors duration-200 hover:bg-blue-500"
-                                    >
-                                        <Twitter size={16} />
+                                    <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full">
+                                        <img src={Instagram} />
                                     </a>
-                                    <a
-                                        href="#"
-                                        className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 transition-colors duration-200 hover:bg-blue-500"
-                                    >
-                                        <Linkedin size={16} />
+                                    <a href="#" className="flex h-8 w-8 items-center justify-center rounded-full">
+                                        <img src={LinkedIn} />
                                     </a>
                                 </div>
                             </div>

@@ -37,7 +37,7 @@ export default function AboutUs() {
                                 </p>
                             </div>
                             <div className="flex h-80 items-center justify-center rounded bg-gray-200">
-                                <img src={UniversityImage} alt="University Image" />
+                                <img src={UniversityImage} loading="lazy" alt="University Image" />
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ export default function AboutUs() {
 
                         <div className="grid items-center gap-12 md:grid-cols-2">
                             <div className="flex h-80 items-center justify-center rounded-lg bg-gray-200">
-                                <img src={SmmsImage} alt="SMMS Building" />
+                                <img src={SmmsImage} loading="lazy" alt="SMMS Building" />
                                 {/* <span className="text-lg text-gray-500">SMMS Building Image</span> */}
                             </div>
                             <div>
