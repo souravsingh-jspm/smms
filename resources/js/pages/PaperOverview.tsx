@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import axios from 'axios';
 import { Award, FileText, Search, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Layout from './Layout';
 
 const paperCategories = [
@@ -87,6 +89,24 @@ const qualityStandards = [
 ];
 
 export default function PaperOverview() {
+    const [committee, setCommittee] = useState(null);
+    // 2. Add loading and error states for a better user experience.
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // 3. Simplified the API call - no need for Promise.all for a single request.
+                const response = await axios.get('/api/conference-track/1');
+                setCommittee(response.data);
+            } catch (err) {
+                console.error('Error fetching committee data:', err);
+                setError('Failed to load the content. Please try again later.');
+            }
+        };
+
+        fetchData();
+    }, []);
     return (
         <div>
             <Layout>
@@ -179,8 +199,31 @@ export default function PaperOverview() {
                     </div>
                 </section>
 
-                <section className="py-16">
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"></div>
+                <section className="flex w-[100vw] justify-center">
+                    {committee && (
+                        <div className="row">
+                            <div className="col-md-2 d-none d-lg-block">
+                                {/* <div className="bg-light border p-3" style={{ height: '600px' }}>
+                                Left Ad Space
+                            </div> */}
+                            </div>
+
+                            <div className="col-lg-8 col-md-12 border-dar border">
+                                <article className="prose border-t-2 px-3 py-4">
+                                    <div
+                                        className="[&_li]:ml-6 [&_li]:list-disc [&_table]:w-full [&_table]:table-auto [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1"
+                                        dangerouslySetInnerHTML={{ __html: committee.content }}
+                                    />
+                                </article>
+                            </div>
+
+                            <div className="col-md-2 d-none d-lg-block">
+                                {/* <div className="bg-light border p-3" style={{ height: '600px' }}>
+                                Right Ad Space
+                            </div> */}
+                            </div>
+                        </div>
+                    )}
                 </section>
                 {/* Quality Standards */}
                 <section className="bg-gray-50 py-16">

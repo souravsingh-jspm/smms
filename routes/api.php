@@ -16,7 +16,7 @@ Route::apiResource('about-conference', HpacController::class);
 
 Route::apiResource('important-dates', HpidController::class);
 
-Route::apiResource('conference-tracks', ConferenceTracksTopicController::class);
+Route::apiResource('conference-track', ConferenceTracksTopicController::class);
 
 Route::apiResource('cf-important-dates', CfpidController::class);
 

@@ -32,9 +32,10 @@ class ConferenceTracksTopicController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ConferenceTracksTopic $conferenceTracksTopic)
+    public function show($id)
     {
-        return response()->json(data: $conferenceTracksTopic);
+        $conferenceTracksTopic = ConferenceTracksTopic::findOrFail($id);
+        return response()->json($conferenceTracksTopic);
     }
 
     /**

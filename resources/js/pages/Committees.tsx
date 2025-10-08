@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Layout from './Layout';
-import ShimmerUI from './ShimmerUI';
 
 export default function Committees() {
     // 1. Set initial state to null, as we're fetching a single object, not an array.
     const [committee, setCommittee] = useState(null);
     // 2. Add loading and error states for a better user experience.
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -19,8 +17,6 @@ export default function Committees() {
             } catch (err) {
                 console.error('Error fetching committee data:', err);
                 setError('Failed to load the content. Please try again later.');
-            } finally {
-                setIsLoading(false);
             }
         };
 
@@ -28,9 +24,6 @@ export default function Committees() {
     }, []); // Empty dependency array ensures this runs only once.
 
     // Display a loading message while data is being fetched.
-    if (isLoading) {
-        return <ShimmerUI />;
-    }
 
     // Display an error message if the API call fails.
     if (error) {

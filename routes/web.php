@@ -42,16 +42,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('AdminHomePage');
     })->name('admin-home');
 
-         Route::get('admin/slider', function () {
+        Route::get('admin/slider', function () {
         return Inertia::render('AdminSlider');
     })->name('slider');
 
-         Route::get('/admin/call-for-page', function () {
+        Route::get('/admin/call-for-page', function () {
         return Inertia::render('AdminCallForPage');
     })->name('acall-for-page');
-            Route::get('admin/committee', function () {
+        Route::get('admin/committee', function () {
         return Inertia::render('AdminCommittee');
     })->name('admin-committee');
+    Route::get('admin/paper-overview', function () {
+        return Inertia::render('AdminConferenceTracksTopic');
+    })->name('admin-paper-overview');
 });
 
 require __DIR__.'/settings.php';

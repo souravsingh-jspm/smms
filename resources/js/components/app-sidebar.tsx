@@ -27,6 +27,11 @@ const mainNavItems: NavItem[] = [
         href: '/admin/slider',
         icon: LayoutGrid,
     },
+    {
+        title: 'Paper Overview',
+        href: '/admin/paper-overview',
+        icon: LayoutGrid,
+    },
 ];
 
 // const footerNavItems: NavItem[] = [
