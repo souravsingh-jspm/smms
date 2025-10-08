@@ -207,17 +207,17 @@ export default function PuneDarshan() {
                 <section className="bg-[#dfe1e9] py-16 text-white">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="mb-12 text-center">
-                            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Nearby Places to Explore</h2>
-                            <p className="text-xl text-blue-100">Extend your journey with these amazing destinations near Pune</p>
+                            <h2 className="mb-4 text-3xl font-bold text-black md:text-4xl">Nearby Places to Explore</h2>
+                            <p className="text-xl text-black">Extend your journey with these amazing destinations near Pune</p>
                         </div>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {nearbyPlaces.map((place, index) => (
-                                <Card key={index} className="border-white/20 bg-white/10 text-white">
+                                <Card key={index} className="border-white/20 bg-white/10 text-black">
                                     <CardContent className="p-6 text-center">
                                         <h3 className="mb-2 text-xl font-semibold">{place.name}</h3>
-                                        <p className="mb-2 text-blue-100">{place.attraction}</p>
-                                        <div className="flex items-center justify-center space-x-1 text-blue-200">
+                                        <p className="mb-2 text-black">{place.attraction}</p>
+                                        <div className="flex items-center justify-center space-x-1 text-black">
                                             <MapPin className="h-4 w-4" />
                                             <span className="text-sm">{place.distance} from Pune</span>
                                         </div>

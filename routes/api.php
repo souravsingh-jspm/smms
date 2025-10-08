@@ -7,6 +7,7 @@ use App\Http\Controllers\CfpidController;
 use App\Http\Controllers\CfsgController;
 use App\Http\Controllers\CftoiController;
 use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\ConferenceTracksTopicController;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource('conferencehigh-lights', HpchController::class);
@@ -15,6 +16,7 @@ Route::apiResource('about-conference', HpacController::class);
 
 Route::apiResource('important-dates', HpidController::class);
 
+Route::apiResource('conference-tracks', ConferenceTracksTopicController::class);
 
 Route::apiResource('cf-important-dates', CfpidController::class);
 
